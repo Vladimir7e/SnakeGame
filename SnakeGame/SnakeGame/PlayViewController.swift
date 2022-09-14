@@ -21,7 +21,7 @@ class PlayViewController: UIViewController {
     private var isStarted: Bool = true
     private var gameOver: Bool = false
     private var startDirectionSnake = directionSnake.left
-    private var posArray: [CGPoint] = [CGPoint(x: 0, y: 0), CGPoint(x: 20, y: 0), CGPoint(x: 40, y: 0)]
+    private var posArray: [CGPoint] = [CGPoint(x: 40, y: 0), CGPoint(x: 20, y: 0), CGPoint(x: 0, y: 0)]
     private var foodPos: CGPoint = CGPoint(x: 0, y: 0)
     private let snakeSize: CGFloat = 20
     private var timer: Timer?
@@ -66,7 +66,7 @@ class PlayViewController: UIViewController {
         setupSnakeView(index: 0)
         setupSnakeView(index: 1)
         setupSnakeView(index: 2)
-        posArray[0] = getRandomPosition()
+//        posArray[0] = getRandomPosition()
     }
 
     private func setupSnakeView(index: Int) {
@@ -100,8 +100,21 @@ class PlayViewController: UIViewController {
 
     private func changeDirection () {
         checkGameOver()
+        let prev: CGPoint = posArray[0]
+        setupFirstSnakesElement()
+        updateSnake(with: prev)
+    }
 
-        var prev: CGPoint = posArray[0]
+    private func checkGameOver() {
+        if posArray[0].x < minX || posArray[0].x > maxX && !gameOver {
+            gameOver = !gameOver
+        }
+        else if posArray[0].y < minY || posArray[0].y > maxY  && !gameOver {
+            gameOver = !gameOver
+        }
+    }
+
+    private func setupFirstSnakesElement() {
         if startDirectionSnake == .down {
             posArray[0].y += snakeSize
         } else if startDirectionSnake == .up {
@@ -113,21 +126,15 @@ class PlayViewController: UIViewController {
         }
 
         snakeMoveWith(0)
-        
+    }
+
+    private func updateSnake(with prev: CGPoint) {
+        var prev: CGPoint = prev
         for index in 1..<posArray.count {
             let current = posArray[index]
             posArray[index] = prev
             prev = current
             snakeMoveWith(index)
-        }
-    }
-
-    private func checkGameOver() {
-        if posArray[0].x < minX || posArray[0].x > maxX && !gameOver {
-            gameOver = !gameOver
-        }
-        else if posArray[0].y < minY || posArray[0].y > maxY  && !gameOver {
-            gameOver = !gameOver
         }
     }
 

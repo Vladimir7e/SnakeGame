@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7E704262-771F-4959-9224-E644D750813C"
+            uuid = "9901E09E-8E89-4336-8BE9-B77CEC2E0650"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SnakeGame/PlayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "changeDirection()"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "setupFirstSnakesElement()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
